@@ -29,12 +29,17 @@
     <h5>login</h5>
 
     <form>
-      <div class="input-group mb-3 col-auto">
-        <input type="email" class="form-control" placeholder="Username">
+      <div class="input-group mb-3">
+        <div class="form-floating">
+          <input type="text" class="form-control" id="usernameInput" placeholder="">
+          <label for="usernameInput">Username</label>
+        </div>
         <span class="input-group-text">@building-it.com</span>
       </div>
-      <div class="mb-3">
-        <input type="password" class="form-control" placeholder="Password">
+
+      <div class="form-floating mb-3">
+        <input type="password" class="form-control" id="passwordInput" placeholder="">
+        <label for="passwordInput">Password</label>
       </div>
     </form>
   </div>
