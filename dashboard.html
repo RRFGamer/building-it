@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body {
+            display: flex;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .sidebar {
+            width: 200px;
+            background-color: #f8f9fa;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            height: 100vh;
+            position: fixed;
+        }
+        .sidebar h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        .sidebar a {
+            display: block;
+            color: #000;
+            text-decoration: none;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .sidebar a:hover {
+            background-color: #e9ecef;
+        }
+        .content {
+            margin-left: 220px; /* Same as the sidebar width + padding */
+            padding: 20px;
+            width: 100%;
+        }
+        .chart-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .chart {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 10px;
+            flex: 1 1 calc(50% - 20px); /* Two charts per row */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .chart h3 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .chart img {
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Funcionalidades</h2>
+        <a href="#">Controlo Iluminação</a>
+        <a href="#">Consumo de Energia</a>
+        <a href="#">Consumo de Água</a>
+        <a href="#">Controlo Temperatura</a>
+    </div>
+    <div class="content">
+        <div class="chart-container">
+            <div class="chart">
+                <h3>Consumo de energia por mês</h3>
+                <img src="bar_chart.png" alt="Bar Chart">
+            </div>
+            <div class="chart">
+                <h3>Consumo de energia por departamento</h3>
+                <img src="pie_chart.png" alt="Pie Chart">
+            </div>
+        </div>
+        <div class="chart">
+            <h3>Consumo de água diário</h3>
+            <img src="line_chart.png" alt="Line Chart">
+        </div>
+    </div>
+</body>
+</html>
