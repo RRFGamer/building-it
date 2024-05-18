@@ -23,26 +23,33 @@
   ></script>
 </head>
 
-<body>
-  <div class="container p-2 m-auto mt-5 text-center border border-secondary border-2 rounded-3">
-    <h1>log in</h1>
-    <h5>login</h5>
+<body class="bg-body-secondary py-5">
+  <form class="container bg-light p-3 m-auto text-center rounded-3 shadow">
+    <div class="m-4">
+      <h1>Faça o login</h1>
 
-    <form>
-      <div class="input-group mb-3">
-        <div class="form-floating">
-          <input type="text" class="form-control" id="usernameInput" placeholder="">
-          <label for="usernameInput">Username</label>
-        </div>
-        <span class="input-group-text">@building-it.com</span>
+      <div class="text-wrap">
+        Digite o seu e-mail e palavra-passe para a àrea do cliente web
       </div>
+    </div>
 
-      <div class="form-floating mb-3">
-        <input type="password" class="form-control" id="passwordInput" placeholder="">
-        <label for="passwordInput">Password</label>
+    <div class="input-group mb-3">
+      <div class="form-floating">
+        <input type="text" class="form-control" id="usernameInput" placeholder="">
+        <label for="usernameInput">Username</label>
       </div>
-    </form>
-  </div>
+      <span class="input-group-text">@building-it.com</span>
+    </div>
+
+    <div class="form-floating mb-3">
+      <input type="password" class="form-control" id="passwordInput" placeholder="">
+      <label for="passwordInput">Password</label>
+    </div>
+
+    <button type="button" class="btn btn-dark">
+      Log in
+    </button>
+  </form>
 </body>
 
 </html>
