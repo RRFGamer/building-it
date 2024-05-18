@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Problemas</title>
+    <style>
+        body {
+            display: flex;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .sidebar {
+            width: 200px;
+            background-color: #f8f9fa;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            height: 100vh;
+            position: fixed;
+            display: flex;
+            flex-direction: column;
+        }
+        .sidebar h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        .sidebar a {
+            display: block;
+            color: #000;
+            text-decoration: none;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .sidebar a:hover {
+            background-color: #e9ecef;
+        }
+        .content {
+            margin-left: 220px; /* Same as the sidebar width + padding */
+            padding: 20px;
+            width: 100%;
+        }
+        .issue {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            background-color: #fff;
+        }
+        .issue .area {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        .issue .nature {
+            font-style: italic;
+            color: #777;
+            margin-bottom: 10px;
+        }
+        .issue .description {
+            margin-bottom: 10px;
+        }
+        .issue .reported-by {
+            font-style: italic;
+            color: #777;
+        }
+        .resolve-button {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .resolve-button:hover {
+            background-color: #218838;
+        }
+        .chart-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .chart {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            flex: 1 1 48%; /* Two charts side by side with a small gap */
+            margin-bottom: 20px;
+        }
+        .chart h3 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .chart img {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <a href="index.html" class="logout-button">Logout</a>
+        <div class="links">
+            <h2>Problemas</h2>
+            <a href="#" id="por-resolver-tab">Problemas por resolver</a>
+            <a href="#" id="resolvidos-tab">Problemas resolvidos</a>
+        </div>
+    </div>
+    <div class="content">
+        <div id="problemas-por-resolver" style="display: block;">
+            <!-- Placeholder for dynamically loaded issues -->
+            <div class="issue">
+                <div class="area">Área: Garagem</div>
+                <div class="nature">Natureza: Temperatura</div>
+                <div class="description">Há uma lâmpada da garagem que está a piscar, parece estar com defeito</div>
+                <div class="reported-by">Reportado por: Maria Silva</div>
+                <button class="resolve-button">Resolvido</button>
+            </div>
+            <div class="issue">
+                <div class="area">Área: Apartamento</div>
+                <div class="nature">Natureza: Temperatura</div>
+                <div class="description">O ar condicionado não está a funcionar, está ligado e com a temperatura certa mas não está a fazer nada.</div>
+                <div class="reported-by">Reportado por: João Pereira</div>
+                <button class="resolve-button">Resolvido</button>
+            </div>
+            <div class="issue">
+                <div class="nature">Natureza: Água</div>
+                <div class="description">Falha no sistema de irrigação do jardim <br> Os regadores estão virados para o lado errado, molharam-me ao sair do prédio...</div>
+                <div class="reported-by">Reportado por: Roberto Gomes</div>
+                <button class="resolve-button">Resolvido</button>
+            </div>
+        </div>
+        <div id="problemas-resolvidos" style="display: none;">
+            <!-- Placeholder for dynamically loaded resolved issues -->
+            <div class="issue">
+                <div class="area">Área: Jardim</div>
+                <div class="nature">Natureza: Água</div>
+                <div class="description">A torneira do jardim fica continuamente a pingar</div>
+                <div class="reported-by">Reportado por: Rodrigo Marques</div>
+                <div class="reported-by">Resolvido por: João Santos</div>
+            </div>
+            <div class="issue">
+                <div class="nature">Natureza: Outro</div>
+                <div class="description">O MEU TELEMOVEL NAO CONSEGUE CONECTAR À REDE ISTO É INADMISSÍVEL</div>
+                <div class="reported-by">Reportado por: Miguel Oliveira</div>
+                <div class="reported-by">Resolvido por: Mónica Esteves</div>
+            </div>
+            <div class="issue">
+                <div class="area">Área: Apartamento</div>
+                <div class="nature">Natureza: Água</div>
+                <div class="description">Falta de água quente na casa de banho, não há água quente a sair do chuveiro.</div>
+                <div class="reported-by">Reportado por: Ana Ferreira</div>
+                <div class="reported-by">Resolvido por: João Santos</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript for switching between tabs
+        document.getElementById('por-resolver-tab').addEventListener('click', function(event) {
+            event.preventDefault();
+            document.getElementById('problemas-por-resolver').style.display = 'block';
+            document.getElementById('problemas-resolvidos').style.display = 'none';
+        });
+
+        document.getElementById('resolvidos-tab').addEventListener('click', function(event) {
+            event.preventDefault();
+            document.getElementById('problemas-por-resolver').style.display = 'none';
+            document.getElementById('problemas-resolvidos').style.display = 'block';
+        });
+
+        // Example functionality for resolving an issue
+        document.querySelectorAll('.resolve-button').forEach(button => {
+            button.addEventListener('click', function() {
+                // Move the issue to 'Problemas Resolvidos' section
+                const issue = this.parentNode;
+                const resolvedIssuesContainer = document.getElementById('problemas-resolvidos');
+                resolvedIssuesContainer.appendChild(issue);
+
+                // Hide the resolve button
+                this.style.display = 'none';
+
+                // Add resolver information
+                const resolverInfo = document.createElement('div');
+                resolverInfo.classList.add('reported-by');
+                resolverInfo.textContent = 'Resolvido por: Luís Freitas';
+                issue.appendChild(resolverInfo);
+            });
+        });
+    </script>
+</body>
+</html>
