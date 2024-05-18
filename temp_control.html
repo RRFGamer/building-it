@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controlo de Temperatura</title>
+    <style>
+        body {
+            display: flex;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .sidebar {
+            width: 200px;
+            background-color: #f8f9fa;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            height: 100vh;
+            position: fixed;
+        }
+        .sidebar h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        .sidebar a {
+            display: block;
+            color: #000;
+            text-decoration: none;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .sidebar a:hover {
+            background-color: #e9ecef;
+        }
+        .content {
+            margin-left: 220px; /* Same as the sidebar width + padding */
+            padding: 20px;
+            width: 100%;
+        }
+        .control-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .control {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .control h3 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .control input[type="range"] {
+            width: 80%;
+            margin: 10px 0;
+        }
+        .control input[type="time"] {
+            margin: 10px 0;
+        }
+        .control input[type="number"] {
+            width: 60px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <a href="dashboard.html">&#8592; Dashboard</a>
+        <h2>Áreas</h2>
+        <a href="#">Sala</a>
+        <a href="#">Cozinha</a>
+        <a href="#">Quarto</a>
+        <a href="#">Quarto 2</a>
+        <!-- Add more areas as needed -->
+    </div>
+    <div class="content">
+        <div class="control-panel">
+            <div class="control">
+                <h3>Termostato</h3>
+                <input type="range" min="16" max="30" value="22" id="thermostat">
+                <p>Temperatura: <span id="thermostatValue">22</span>&deg;C</p>
+            </div>
+            <div class="control">
+                <h3>Ar Condicionado</h3>
+                <input type="range" min="16" max="30" value="24" id="ac">
+                <p>Temperatura: <span id="acValue">24</span>&deg;C</p>
+            </div>
+            <div class="control">
+                <h3>Programar Temperatura</h3>
+                <label for="programTime">Hora:</label>
+                <input type="time" id="programTime">
+                <label for="programTemp">Temperatura (&deg;C):</label>
+                <input type="number" id="programTemp" min="16" max="30" value="22">
+                <button onclick="programTemperature()">Programar</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('thermostat').addEventListener('input', function() {
+            document.getElementById('thermostatValue').textContent = this.value;
+        });
+
+        document.getElementById('ac').addEventListener('input', function() {
+            document.getElementById('acValue').textContent = this.value;
+        });
+
+        function programTemperature() {
+            var time = document.getElementById('programTime').value;
+            var temp = document.getElementById('programTemp').value;
+            alert('Temperatura de ' + temp + '°C programada para ' + time);
+        }
+    </script>
+</body>
+</html>

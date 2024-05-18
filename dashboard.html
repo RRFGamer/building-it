@@ -47,16 +47,19 @@
             border: 1px solid #ddd;
             border-radius: 8px;
             padding: 10px;
-            flex: 1 1 calc(50% - 20px); /* Two charts per row */
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            flex: 1 1 48%; /* Two charts side by side with a small gap */
         }
         .chart h3 {
             text-align: center;
             margin-bottom: 10px;
         }
         .chart img {
-            width: 100%;
+            width: 60%;
             height: auto;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
         }
     </style>
 </head>
@@ -66,22 +69,23 @@
         <a href="#">Controlo Iluminação</a>
         <a href="#">Consumo de Energia</a>
         <a href="#">Consumo de Água</a>
-        <a href="#">Controlo Temperatura</a>
+        <a href="temp_control.html">Controlo Temperatura</a>
+        <a href="#">Requisitar Equipa</a>
     </div>
     <div class="content">
         <div class="chart-container">
             <div class="chart">
                 <h3>Consumo de energia por mês</h3>
-                <img src="bar_chart.png" alt="Bar Chart">
+                <img src="./charts/bar_chart.jpg" alt="Bar Chart">
             </div>
             <div class="chart">
-                <h3>Consumo de energia por departamento</h3>
-                <img src="pie_chart.png" alt="Pie Chart">
+                <h3>Consumo de energia por cómodo</h3>
+                <img src="./charts/pie_chart.png" alt="Pie Chart">
             </div>
         </div>
         <div class="chart">
             <h3>Consumo de água diário</h3>
-            <img src="line_chart.png" alt="Line Chart">
+            <img src="./charts/line_chart.jpg" alt="Line Chart">
         </div>
     </div>
 </body>
