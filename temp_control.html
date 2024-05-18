@@ -83,20 +83,20 @@
         <div class="control-panel">
             <div class="control">
                 <h3>Termostato</h3>
-                <input type="range" min="16" max="30" value="22" id="thermostat">
+                <input type="range" min="10" max="30" value="22" id="thermostat">
                 <p>Temperatura: <span id="thermostatValue">22</span>&deg;C</p>
             </div>
             <div class="control">
                 <h3>Ar Condicionado</h3>
-                <input type="range" min="16" max="30" value="24" id="ac">
-                <p>Temperatura: <span id="acValue">24</span>&deg;C</p>
+                <input type="range" min="10" max="30" value="20" id="ac">
+                <p>Temperatura: <span id="acValue">20</span>&deg;C</p>
             </div>
             <div class="control">
                 <h3>Programar Temperatura</h3>
                 <label for="programTime">Hora:</label>
                 <input type="time" id="programTime">
                 <label for="programTemp">Temperatura (&deg;C):</label>
-                <input type="number" id="programTemp" min="16" max="30" value="22">
+                <input type="number" id="programTemp" min="10" max="30" value="22">
                 <button onclick="programTemperature()">Programar</button>
             </div>
         </div>

@@ -17,6 +17,8 @@
             box-shadow: 2px 0 5px rgba(0,0,0,0.1);
             height: 100vh;
             position: fixed;
+            display: flex;
+            flex-direction: column;
         }
         .sidebar h2 {
             font-size: 20px;
@@ -61,16 +63,21 @@
             margin-left: auto;
             margin-right: auto;
         }
+        .logout-button {
+        }
     </style>
 </head>
 <body>
     <div class="sidebar">
-        <h2>Funcionalidades</h2>
-        <a href="#">Controlo Iluminação</a>
-        <a href="#">Consumo de Energia</a>
-        <a href="#">Consumo de Água</a>
-        <a href="temp_control.html">Controlo Temperatura</a>
-        <a href="#">Requisitar Equipa</a>
+        <a href="index.html" class="logout-button">Logout</a>
+        <div class="links">
+            <h2>Funcionalidades</h2>
+            <a href="#">Controlo Iluminação</a>
+            <a href="#">Consumo de Energia</a>
+            <a href="#">Consumo de Água</a>
+            <a href="temp_control.html">Controlo Temperatura</a>
+            <a href="#">Requisitar Equipa</a>
+        </div>
     </div>
     <div class="content">
         <div class="chart-container">
