@@ -1,7 +1,5 @@
 "use strict";
 
-let stupid;
-
 function main() {
   const ACTORS = {
     "maria.fava": {
@@ -36,8 +34,6 @@ function main() {
   form.addEventListener(
     "submit",
     event => {
-      stupid = event;
-      console.log(event);
       const name = form.elements.namedItem("usernameInput")?.value;
       const password = form.elements.namedItem("passwordInput")?.value;
       const fieldsValid = name in ACTORS && password === ACTORS[name].password;
