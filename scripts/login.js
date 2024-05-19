@@ -2,16 +2,16 @@
 
 function main() {
   const ACTORS = {
-    "maria.fava": {
-      password: "palavrapasse",
+    "maria": {
+      password: "123",
       role: "proprieter",
     },
     "luis.freitas": {
-      password: "grandecarromonstro",
+      password: "123",
       role: "contractor",
     },
-    "marta.residente": {
-      password: "ratosdenovaiorque",
+    "marta": {
+      password: "123",
       role: "resident",
     },
   };
