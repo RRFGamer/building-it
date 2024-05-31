@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consumo de Energia</title>
+    <style>
+        body {
+            display: flex;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .sidebar {
+            width: 200px;
+            background-color: #f8f9fa;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            height: 100vh;
+            position: fixed;
+        }
+        .sidebar a {
+            display: block;
+            color: #000;
+            text-decoration: none;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .sidebar a:hover {
+            background-color: #e9ecef;
+        }
+        .content {
+            margin-left: 220px;
+            padding: 20px;
+            width: 100%;
+        }
+        .consumption-details {
+            display: none;
+        }
+        .details-header {
+            font-weight: bold;
+        }
+        .consumption-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .consumption-table th, .consumption-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        .consumption-table th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <a href="dashboard.html">&#8592; Dashboard</a>
+        <h2>Áreas</h2>
+        <a href="energy_consumption.html?area=sala">Sala</a>
+        <a href="energy_consumption.html?area=cozinha">Cozinha</a>
+        <a href="energy_consumption.html?area=quarto">Quarto</a>
+        <a href="energy_consumption.html?area=quarto2">Quarto 2</a>
+        <!-- Adicionar mais áreas conforme necessário -->
+    </div>
+    <div class="content">
+        <div id="consumptionDetails" class="consumption-details">
+            <div class="details-header">Detalhes do Consumo - <span id="areaName"></span></div>
+            <table class="consumption-table">
+                <thead>
+                    <tr>
+                        <th>Dispositivo</th>
+                        <th>Consumo Atual (kWh)</th>
+                        <th>Consumo Mensal (kWh)</th>
+                    </tr>
+                </thead>
+                <tbody id="consumptionTableBody">
+                    <!-- Linhas geradas dinamicamente -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script>
+        const consumptionData = {
+            sala: [
+                { dispositivo: 'Lâmpada 1', consumoAtual: 0.5, consumoMensal: 15 },
+                { dispositivo: 'Lâmpada 2', consumoAtual: 0.7, consumoMensal: 20 },
+                { dispositivo: 'Tomada 1', consumoAtual: 1.2, consumoMensal: 35 }
+            ],
+            cozinha: [
+                { dispositivo: 'Lâmpada 1', consumoAtual: 0.3, consumoMensal: 10 },
+                { dispositivo: 'Frigorífico', consumoAtual: 1.5, consumoMensal: 45 },
+                { dispositivo: 'Micro-ondas', consumoAtual: 0.9, consumoMensal: 27 }
+            ],
+            quarto: [
+                { dispositivo: 'Lâmpada 1', consumoAtual: 0.4, consumoMensal: 12 },
+                { dispositivo: 'Ar Condicionado', consumoAtual: 2.0, consumoMensal: 60 },
+                { dispositivo: 'Tomada 1', consumoAtual: 1.1, consumoMensal: 33 }
+            ],
+            quarto2: [
+                { dispositivo: 'Lâmpada 1', consumoAtual: 0.2, consumoMensal: 6 },
+                { dispositivo: 'Ventoinha', consumoAtual: 0.8, consumoMensal: 24 },
+                { dispositivo: 'Tomada 1', consumoAtual: 0.9, consumoMensal: 27 }
+            ]
+        };
+
+        function showConsumptionDetails(area) {
+            const areaNameElement = document.getElementById('areaName');
+            const detailsDiv = document.getElementById('consumptionDetails');
+            const tableBody = document.getElementById('consumptionTableBody');
+            tableBody.innerHTML = '';
+            if (area && consumptionData[area]) {
+                areaNameElement.textContent = area.charAt(0).toUpperCase() + area.slice(1);
+                consumptionData[area].forEach(item => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `<td>${item.dispositivo}</td><td>${item.consumoAtual}</td><td>${item.consumoMensal}</td>`;
+                    tableBody.appendChild(row);
+                });
+                detailsDiv.style.display = 'block';
+            } else {
+                detailsDiv.style.display = 'none';
+            }
+        }
+
+        // Get the area from URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const area = urlParams.get('area');
+        showConsumptionDetails(area);
+    </script>
+</body>
+</html>

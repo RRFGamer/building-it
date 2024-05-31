@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controlo de Iluminação</title>
+    <style>
+        body {
+            display: flex;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .sidebar {
+            width: 200px;
+            background-color: #f8f9fa;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            height: 100vh;
+            position: fixed;
+        }
+        .sidebar a {
+            display: block;
+            color: #000;
+            text-decoration: none;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .sidebar a:hover {
+            background-color: #e9ecef;
+        }
+        .content {
+            margin-left: 220px;
+            padding: 20px;
+            width: 100%;
+        }
+        .control-panel {
+            display: none;
+        }
+        .control {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .control h3 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .control input[type="range"], .control input[type="time"] {
+            width: 80%;
+            margin: 10px 0;
+        }
+        .schedule {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            margin: 10px 0;
+        }
+        .schedule div {
+            display: flex;
+            justify-content: space-between;
+            width: 80%;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <a href="dashboard.html">&#8592; Dashboard</a>
+        <h2>Áreas</h2>
+        <a href="light_control.html?area=sala">Sala</a>
+        <a href="light_control.html?area=cozinha">Cozinha</a>
+        <a href="light_control.html?area=quarto">Quarto</a>
+        <a href="light_control.html?area=quarto2">Quarto 2</a>
+    </div>
+    <div class="content">
+        <div id="controlPanel" class="control-panel">
+            <div class="details-header">Controlo de Iluminação - <span id="areaName"></span></div>
+            <div class="control" id="lightControlTemplate" style="display: none;">
+                <h3></h3>
+                <label for="intensityRange">Intensidade:</label>
+                <input type="range" min="0" max="100" value="50" class="intensityRange" oninput="updateIntensityValue(this)">
+                <span>Intensidade: <span class="intensityValue">50</span>%</span>
+                <label for="colorPicker">Cor:</label>
+                <input type="color" class="colorPicker">
+                <div class="schedule">
+                    <h4>Programação</h4>
+                    <div>
+                        <label for="startTime">Início:</label>
+                        <input type="time" class="startTime">
+                    </div>
+                    <div>
+                        <label for="endTime">Fim:</label>
+                        <input type="time" class="endTime">
+                    </div>
+                </div>
+                <div class="timer">
+                    <label for="timerDuration">Desligar após (minutos):</label>
+                    <input type="number" min="1" class="timerDuration" placeholder="minutos">
+                </div>
+                <button onclick="programLighting(this)">Programar</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        const lightData = {
+            sala: ['Lâmpada 1', 'Lâmpada 2'],
+            cozinha: ['Lâmpada 1'],
+            quarto: ['Lâmpada 1', 'Lâmpada 2'],
+            quarto2: ['Lâmpada 1']
+        };
+
+        function showControlPanel(area) {
+            const areaNameElement = document.getElementById('areaName');
+            const controlPanel = document.getElementById('controlPanel');
+            const lightControlTemplate = document.getElementById('lightControlTemplate');
+            controlPanel.innerHTML = ''; // Limpa o conteúdo existente
+            controlPanel.appendChild(lightControlTemplate.cloneNode(true)); // Adiciona o template invisível de volta
+
+            if (area && lightData[area]) {
+                areaNameElement.textContent = area.charAt(0).toUpperCase() + area.slice(1);
+                lightData[area].forEach(light => {
+                    const controlTemplate = lightControlTemplate.cloneNode(true);
+                    controlTemplate.style.display = 'flex';
+                    controlTemplate.id = '';
+                    controlTemplate.querySelector('h3').textContent = light;
+                    controlPanel.appendChild(controlTemplate);
+                });
+                controlPanel.style.display = 'flex';
+                controlPanel.style.flexDirection = 'column';
+                controlPanel.style.gap = '20px';
+            } else {
+                controlPanel.style.display = 'none';
+            }
+        }
+
+        function updateIntensityValue(rangeInput) {
+            const value = rangeInput.value;
+            rangeInput.nextElementSibling.querySelector('.intensityValue').textContent = value;
+        }
+
+        function programLighting(button) {
+            const controlDiv = button.closest('.control');
+            const lightName = controlDiv.querySelector('h3').textContent;
+            const intensity = controlDiv.querySelector('.intensityRange').value;
+            const color = controlDiv.querySelector('.colorPicker').value;
+            const startTime = controlDiv.querySelector('.startTime').value;
+            const endTime = controlDiv.querySelector('.endTime').value;
+            const timerDuration = controlDiv.querySelector('.timerDuration').value;
+            alert(`Lâmpada ${lightName} programada com intensidade ${intensity}%, cor ${color}, início ${startTime}, fim ${endTime}, desligar após ${timerDuration} minutos.`);
+        }
+
+        // Obtém a área dos parâmetros da URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const area = urlParams.get('area');
+        showControlPanel(area);
+    </script>
+</body>
+</html>
