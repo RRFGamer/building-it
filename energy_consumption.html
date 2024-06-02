@@ -34,99 +34,213 @@
             padding: 20px;
             width: 100%;
         }
-        .consumption-details {
-            display: none;
-        }
-        .details-header {
-            font-weight: bold;
-        }
-        .consumption-table {
+        .chart-container {
             width: 100%;
-            border-collapse: collapse;
+            margin-bottom: 30px;
         }
-        .consumption-table th, .consumption-table td {
+        .device-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .device-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100px;
+            padding: 10px;
             border: 1px solid #ddd;
-            padding: 8px;
-            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            cursor: pointer;
         }
-        .consumption-table th {
-            background-color: #f2f2f2;
+        .device-button img {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 5px;
+        }
+        .device-details {
+            margin-top: 20px;
+            display: none;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+        }
+        .device-details h3 {
+            margin-bottom: 10px;
+        }
+        .control-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
         }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <div class="sidebar">
         <a href="/dashboard.html">&#8592; Dashboard</a>
         <h2>Áreas</h2>
+        <a href="/energy_consumption.html?view=geral">Consumo geral</a>
         <a href="/energy_consumption.html?area=sala">Sala</a>
         <a href="/energy_consumption.html?area=cozinha">Cozinha</a>
         <a href="/energy_consumption.html?area=quarto">Quarto</a>
         <a href="/energy_consumption.html?area=quarto2">Quarto 2</a>
-        <!-- Adicionar mais áreas conforme necessário -->
     </div>
     <div class="content">
-        <div id="consumptionDetails" class="consumption-details">
-            <div class="details-header">Detalhes do Consumo - <span id="areaName"></span></div>
-            <table class="consumption-table">
-                <thead>
-                    <tr>
-                        <th>Dispositivo</th>
-                        <th>Consumo Atual (kWh)</th>
-                        <th>Consumo Mensal (kWh)</th>
-                    </tr>
-                </thead>
-                <tbody id="consumptionTableBody">
-                    <!-- Linhas geradas dinamicamente -->
-                </tbody>
-            </table>
+        <div id="geralContent" style="display: none;">
+            <div class="chart-container">
+                <canvas id="monthlyConsumptionChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <canvas id="areaConsumptionChart"></canvas>
+            </div>
+        </div>
+        <div id="deviceButtons" class="device-buttons" style="display: none;"></div>
+        <div id="deviceDetails" class="device-details">
+            <h3 id="deviceName"></h3>
+            <p>Consumo Hoje: <span id="consumoHoje"></span> kWh</p>
+            <p>Consumo Mensal: <span id="consumoMensal"></span> kWh</p>
+            <div class="control-buttons">
+                <button id="seeMoreButton">Ver Mais</button>
+                <button id="toggleButton">Ligar/Desligar</button>
+            </div>
         </div>
     </div>
     <script>
         const consumptionData = {
             sala: [
-                { dispositivo: 'Lâmpada 1', consumoAtual: 0.5, consumoMensal: 15 },
-                { dispositivo: 'Lâmpada 2', consumoAtual: 0.7, consumoMensal: 20 },
-                { dispositivo: 'Tomada 1', consumoAtual: 1.2, consumoMensal: 35 }
+                { dispositivo: 'Lâmpada 1', consumoHoje: 0.5, consumoMensal: 15 },
+                { dispositivo: 'Lâmpada 2', consumoHoje: 0.7, consumoMensal: 20 },
+                { dispositivo: 'Tomada 1', consumoHoje: 1.2, consumoMensal: 35 }
             ],
             cozinha: [
-                { dispositivo: 'Lâmpada 1', consumoAtual: 0.3, consumoMensal: 10 },
-                { dispositivo: 'Frigorífico', consumoAtual: 1.5, consumoMensal: 45 },
-                { dispositivo: 'Micro-ondas', consumoAtual: 0.9, consumoMensal: 27 }
+                { dispositivo: 'Lâmpada 1', consumoHoje: 0.3, consumoMensal: 10 },
+                { dispositivo: 'Frigorífico', consumoHoje: 1.5, consumoMensal: 45 },
+                { dispositivo: 'Micro-ondas', consumoHoje: 0.9, consumoMensal: 27 }
             ],
             quarto: [
-                { dispositivo: 'Lâmpada 1', consumoAtual: 0.4, consumoMensal: 12 },
-                { dispositivo: 'Ar Condicionado', consumoAtual: 2.0, consumoMensal: 60 },
-                { dispositivo: 'Tomada 1', consumoAtual: 1.1, consumoMensal: 33 }
+                { dispositivo: 'Lâmpada 1', consumoHoje: 0.4, consumoMensal: 12 },
+                { dispositivo: 'Ar Condicionado', consumoHoje: 2.0, consumoMensal: 60 },
+                { dispositivo: 'Tomada 1', consumoHoje: 1.1, consumoMensal: 33 }
             ],
             quarto2: [
-                { dispositivo: 'Lâmpada 1', consumoAtual: 0.2, consumoMensal: 6 },
-                { dispositivo: 'Ventoinha', consumoAtual: 0.8, consumoMensal: 24 },
-                { dispositivo: 'Tomada 1', consumoAtual: 0.9, consumoMensal: 27 }
+                { dispositivo: 'Lâmpada 1', consumoHoje: 0.2, consumoMensal: 6 },
+                { dispositivo: 'Ventoinha', consumoHoje: 0.8, consumoMensal: 24 },
+                { dispositivo: 'Tomada 1', consumoHoje: 0.9, consumoMensal: 27 }
             ]
         };
 
+        const areaConsumption = {
+            sala: 70,
+            cozinha: 82,
+            quarto: 105,
+            quarto2: 57
+        };
+
+        function renderCharts() {
+            const monthlyCtx = document.getElementById('monthlyConsumptionChart').getContext('2d');
+            const areaCtx = document.getElementById('areaConsumptionChart').getContext('2d');
+
+            new Chart(monthlyCtx, {
+                type: 'line',
+                data: {
+                    labels: Array.from({ length: 30 }, (_, i) => i + 1),
+                    datasets: [{
+                        label: 'Consumo Mensal (kWh)',
+                        data: Array.from({ length: 30 }, () => Math.floor(Math.random() * 10) + 1),
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        x: { display: true, title: { display: true, text: 'Dia do Mês' } },
+                        y: { display: true, title: { display: true, text: 'kWh' } }
+                    }
+                }
+            });
+
+            new Chart(areaCtx, {
+                type: 'bar',
+                data: {
+                    labels: Object.keys(areaConsumption),
+                    datasets: [{
+                        label: 'Consumo por Área (kWh)',
+                        data: Object.values(areaConsumption),
+                        backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                        borderColor: 'rgba(153, 102, 255, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        x: { display: true, title: { display: true, text: 'Áreas' } },
+                        y: { display: true, title: { display: true, text: 'kWh' } }
+                    }
+                }
+            });
+        }
+
         function showConsumptionDetails(area) {
-            const areaNameElement = document.getElementById('areaName');
-            const detailsDiv = document.getElementById('consumptionDetails');
-            const tableBody = document.getElementById('consumptionTableBody');
-            tableBody.innerHTML = '';
+            const deviceButtons = document.getElementById('deviceButtons');
+            deviceButtons.innerHTML = '';
+            const deviceDetails = document.getElementById('deviceDetails');
+            deviceDetails.style.display = 'none';
+            document.getElementById('geralContent').style.display = 'none';
+
             if (area && consumptionData[area]) {
-                areaNameElement.textContent = area.charAt(0).toUpperCase() + area.slice(1);
+                deviceButtons.style.display = 'flex';
                 consumptionData[area].forEach(item => {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `<td>${item.dispositivo}</td><td>${item.consumoAtual}</td><td>${item.consumoMensal}</td>`;
-                    tableBody.appendChild(row);
+                    const button = document.createElement('div');
+                    button.className = 'device-button';
+                    button.innerHTML = `<img src="device_icon.png" alt="${item.dispositivo}"><span>${item.dispositivo}</span>`;
+                    button.addEventListener('click', () => showDeviceDetails(item));
+                    deviceButtons.appendChild(button);
                 });
-                detailsDiv.style.display = 'block';
             } else {
-                detailsDiv.style.display = 'none';
+                deviceButtons.style.display = 'none';
             }
         }
 
-        // Get the area from URL parameters
+        function showGeralContent() {
+            const deviceButtons = document.getElementById('deviceButtons');
+            deviceButtons.style.display = 'none';
+            document.getElementById('deviceDetails').style.display = 'none';
+            document.getElementById('geralContent').style.display = 'block';
+            renderCharts();
+        }
+
+        function showDeviceDetails(device) {
+            const deviceDetails = document.getElementById('deviceDetails');
+            document.getElementById('deviceName').textContent = device.dispositivo;
+            document.getElementById('consumoHoje').textContent = device.consumoHoje;
+            document.getElementById('consumoMensal').textContent = device.consumoMensal;
+            document.getElementById('seeMoreButton').onclick = () => seeMore(device);
+            document.getElementById('toggleButton').onclick = () => toggleDevice(device);
+            deviceDetails.style.display = 'block';
+        }
+
+        function seeMore(device) {
+            alert(`Ver mais detalhes do dispositivo: ${device.dispositivo}`);
+        }
+
+        function toggleDevice(device) {
+            alert(`Ligar/Desligar o dispositivo: ${device.dispositivo}`);
+        }
+
+        // Get the view or area from URL parameters
         const urlParams = new URLSearchParams(window.location.search);
+        const view = urlParams.get('view');
         const area = urlParams.get('area');
-        showConsumptionDetails(area);
+
+        if (view === 'geral') {
+            showGeralContent();
+        } else if (area) {
+            showConsumptionDetails(area);
+        }
     </script>
 </body>
 </html>

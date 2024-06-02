@@ -39,9 +39,7 @@
             width: 100%;
         }
         .control-panel {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
+            display: none;
         }
         .control {
             border: 1px solid #ddd;
@@ -51,21 +49,15 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            margin-bottom: 20px;
         }
         .control h3 {
             text-align: center;
             margin-bottom: 10px;
         }
-        .control input[type="range"] {
+        .control input[type="range"], .control input[type="time"], .control input[type="number"] {
             width: 80%;
             margin: 10px 0;
-        }
-        .control input[type="time"] {
-            margin: 10px 0;
-        }
-        .control input[type="number"] {
-            width: 60px;
-            text-align: center;
         }
     </style>
 </head>
@@ -73,48 +65,100 @@
     <div class="sidebar">
         <a href="/dashboard.html">&#8592; Dashboard</a>
         <h2>Áreas</h2>
-        <a href="#">Sala</a>
-        <a href="#">Cozinha</a>
-        <a href="#">Quarto</a>
-        <a href="#">Quarto 2</a>
-        <!-- Add more areas as needed -->
+        <a href="/temp_control.html?area=whole_house">Toda a Casa</a>
+        <a href="/temp_control.html?area=sala">Sala</a>
+        <a href="/temp_control.html?area=cozinha">Cozinha</a>
+        <a href="/temp_control.html?area=quarto">Quarto</a>
+        <a href="/temp_control.html?area=quarto2">Quarto 2</a>
     </div>
     <div class="content">
-        <div class="control-panel">
-            <div class="control">
-                <h3>Termostato</h3>
-                <input type="range" min="10" max="30" value="22" id="thermostat">
-                <p>Temperatura: <span id="thermostatValue">22</span>&deg;C</p>
+        <div id="controlPanel" class="control-panel">
+            <div class="details-header">Controlo de Temperatura - <span id="areaName"></span></div>
+            <div class="control" id="tempControlTemplate" style="display: none;">
+                <h3></h3>
+                <label for="thermostat">Termostato:</label>
+                <input type="range" min="10" max="30" value="22" class="thermostat" oninput="updateTempValue(this)">
+                <span>Temperatura: <span class="tempValue">22</span>&deg;C</span>
+                <div class="schedule">
+                    <h4>Programar Temperatura</h4>
+                    <label for="programTime">Hora:</label>
+                    <input type="time" class="programTime">
+                    <label for="programTemp">Temperatura (&deg;C):</label>
+                    <input type="number" class="programTemp" min="10" max="30" value="22">
+                    <button onclick="programTemperature(this)">Programar</button>
+                </div>
             </div>
-            <div class="control">
+            <div class="control" id="acControlTemplate" style="display: none;">
                 <h3>Ar Condicionado</h3>
-                <input type="range" min="10" max="30" value="20" id="ac">
-                <p>Temperatura: <span id="acValue">20</span>&deg;C</p>
-            </div>
-            <div class="control">
-                <h3>Programar Temperatura</h3>
-                <label for="programTime">Hora:</label>
-                <input type="time" id="programTime">
-                <label for="programTemp">Temperatura (&deg;C):</label>
-                <input type="number" id="programTemp" min="10" max="30" value="22">
-                <button onclick="programTemperature()">Programar</button>
+                <label for="ac">Ar Condicionado:</label>
+                <input type="range" min="10" max="30" value="20" class="ac" oninput="updateAcValue(this)">
+                <span>Temperatura: <span class="acValue">20</span>&deg;C</span>
             </div>
         </div>
     </div>
     <script>
-        document.getElementById('thermostat').addEventListener('input', function() {
-            document.getElementById('thermostatValue').textContent = this.value;
-        });
+        const tempData = {
+            sala: ['Termostato', 'Ar Condicionado'],
+            cozinha: ['Termostato'],
+            quarto: ['Termostato', 'Ar Condicionado'],
+            quarto2: ['Termostato'],
+            whole_house: ['Termostato Geral']
+        };
 
-        document.getElementById('ac').addEventListener('input', function() {
-            document.getElementById('acValue').textContent = this.value;
-        });
+        function showControlPanel(area) {
+            const areaNameElement = document.getElementById('areaName');
+            const controlPanel = document.getElementById('controlPanel');
+            const tempControlTemplate = document.getElementById('tempControlTemplate');
+            const acControlTemplate = document.getElementById('acControlTemplate');
+            controlPanel.innerHTML = ''; // Limpa o conteúdo existente
+            controlPanel.appendChild(tempControlTemplate.cloneNode(true)); // Adiciona o template invisível de volta
+            controlPanel.appendChild(acControlTemplate.cloneNode(true)); // Adiciona o template invisível de volta
 
-        function programTemperature() {
-            var time = document.getElementById('programTime').value;
-            var temp = document.getElementById('programTemp').value;
-            alert('Temperatura de ' + temp + '°C programada para ' + time);
+            if (area && tempData[area]) {
+                areaNameElement.textContent = area.charAt(0).toUpperCase() + area.slice(1).replace('_', ' ');
+                tempData[area].forEach(temp => {
+                    let controlTemplate;
+                    if (temp.includes('Ar Condicionado')) {
+                        controlTemplate = acControlTemplate.cloneNode(true);
+                    } else {
+                        controlTemplate = tempControlTemplate.cloneNode(true);
+                    }
+                    controlTemplate.style.display = 'flex';
+                    controlTemplate.id = '';
+                    controlTemplate.querySelector('h3').textContent = temp;
+                    controlPanel.appendChild(controlTemplate);
+                });
+                controlPanel.style.display = 'flex';
+                controlPanel.style.flexDirection = 'column';
+                controlPanel.style.gap = '20px';
+            } else {
+                controlPanel.style.display = 'none';
+            }
         }
+
+        function updateTempValue(rangeInput) {
+            const value = rangeInput.value;
+            rangeInput.nextElementSibling.querySelector('.tempValue').textContent = value;
+        }
+
+        function updateAcValue(rangeInput) {
+            const value = rangeInput.value;
+            rangeInput.nextElementSibling.querySelector('.acValue').textContent = value;
+        }
+
+        function programTemperature(button) {
+            const controlDiv = button.closest('.control');
+            const tempName = controlDiv.querySelector('h3').textContent;
+            const temperature = controlDiv.querySelector('.thermostat').value;
+            const programTime = controlDiv.querySelector('.programTime').value;
+            const programTemp = controlDiv.querySelector('.programTemp').value;
+            alert(`${tempName} programado para ${programTemp}°C às ${programTime}.`);
+        }
+
+        // Obtém a área dos parâmetros da URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const area = urlParams.get('area');
+        showControlPanel(area);
     </script>
 </body>
 </html>
