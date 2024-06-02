@@ -56,13 +56,13 @@ function main() {
         // form?
         switch (role) {
           case "proprieter": {
-            form.action = "/dashboard.html";
+            form.action = "./dashboard.html";
           } break;
           case "resident": {
-            form.action = "/report.html"
+            form.action = "./report.html"
           } break;
           case "contractor": {
-            form.action = "/worker.html"
+            form.action = "./worker.html"
           } break;
         }
 
