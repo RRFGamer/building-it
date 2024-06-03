@@ -83,8 +83,8 @@
         <a href="./water_consumption.html?view=geral">Consumo geral</a>
         <a href="./water_consumption.html?area=sala">Sala</a>
         <a href="./water_consumption.html?area=cozinha">Cozinha</a>
-        <a href="./water_consumption.html?area=quarto">Quarto</a>
-        <a href="./water_consumption.html?area=quarto2">Quarto 2</a>
+        <a href="./water_consumption.html?area=casa_de_banho_1andar">Casa de banho 1.º andar</a>
+        <a href="./water_consumption.html?area=casa_de_banho_2andar">Casa de banho 2.º andar</a>
     </div>
     <div class="content">
         <div id="geralContent" style="display: none;">
@@ -115,11 +115,11 @@
                 { dispositivo: 'Torneira 1', consumoHoje: 7, consumoMensal: 210 },
                 { dispositivo: 'Lava-Louças', consumoHoje: 10, consumoMensal: 300 }
             ],
-            quarto: [
+            casa_de_banho_1andar: [
                 { dispositivo: 'Torneira 1', consumoHoje: 4, consumoMensal: 120 },
                 { dispositivo: 'Chuveiro', consumoHoje: 15, consumoMensal: 450 }
             ],
-            quarto2: [
+            casa_de_banho_2andar: [
                 { dispositivo: 'Torneira 1', consumoHoje: 4, consumoMensal: 120 },
                 { dispositivo: 'Chuveiro', consumoHoje: 15, consumoMensal: 450 }
             ]
@@ -128,8 +128,8 @@
         const areaConsumption = {
             sala: 240,
             cozinha: 510,
-            quarto: 570,
-            quarto2: 570
+            casa_de_banho_1andar: 570,
+            casa_de_banho_2andar: 570
         };
 
         function renderCharts() {
