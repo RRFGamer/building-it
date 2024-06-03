@@ -132,6 +132,13 @@
             casa_de_banho_2andar: 570
         };
 
+        const prettyNames = {
+            sala: 'Sala',
+            cozinha: 'Cozinha',
+            casa_de_banho_1andar: 'Casa de banho do 1.º andar',
+            casa_de_banho_2andar: 'Casa de banho do 2.º andar'
+        };
+
         function renderCharts() {
             const monthlyCtx = document.getElementById('monthlyConsumptionChart').getContext('2d');
             const areaCtx = document.getElementById('areaConsumptionChart').getContext('2d');
@@ -160,7 +167,7 @@
             new Chart(areaCtx, {
                 type: 'bar',
                 data: {
-                    labels: Object.keys(areaConsumption),
+                    labels: Object.values(prettyNames),
                     datasets: [{
                         label: 'Consumo por Área (L)',
                         data: Object.values(areaConsumption),
