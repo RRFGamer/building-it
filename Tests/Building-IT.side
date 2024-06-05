@@ -1,0 +1,471 @@
+{
+  "id": "e353535b-8273-4ebc-bd96-80d01db3456f",
+  "version": "2.0",
+  "name": "Building-IT",
+  "url": "https://rrfgamer.github.io/building-it/",
+  "tests": [{
+    "id": "15b88dc8-c6a0-4b26-bbea-c442109ccd01",
+    "name": "Temp Control",
+    "commands": [{
+      "id": "6ba2a83e-4718-4b89-8ce9-1c4b1f6d2f9a",
+      "comment": "",
+      "command": "open",
+      "target": "/building-it/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "72f595e8-6fa9-48d5-994f-b099d573ccd2",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "974x1032",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e3ec572a-dfe1-4e00-8e7d-69a89e3ed837",
+      "comment": "",
+      "command": "click",
+      "target": "id=usernameInput",
+      "targets": [
+        ["id=usernameInput", "id"],
+        ["css=#usernameInput", "css:finder"],
+        ["xpath=//input[@id='usernameInput']", "xpath:attributes"],
+        ["xpath=//form[@id='loginForm']/div[2]/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8ebd54f5-b5ce-4722-9d07-37a36f31d679",
+      "comment": "",
+      "command": "type",
+      "target": "id=usernameInput",
+      "targets": [
+        ["id=usernameInput", "id"],
+        ["css=#usernameInput", "css:finder"],
+        ["xpath=//input[@id='usernameInput']", "xpath:attributes"],
+        ["xpath=//form[@id='loginForm']/div[2]/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "maria"
+    }, {
+      "id": "127b0361-6936-4255-b63f-08a6f44b37eb",
+      "comment": "",
+      "command": "click",
+      "target": "id=passwordInput",
+      "targets": [
+        ["id=passwordInput", "id"],
+        ["css=#passwordInput", "css:finder"],
+        ["xpath=//input[@id='passwordInput']", "xpath:attributes"],
+        ["xpath=//form[@id='loginForm']/div[3]/input", "xpath:idRelative"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c73df866-8ffa-4fcc-85ee-197166c697b2",
+      "comment": "",
+      "command": "type",
+      "target": "id=passwordInput",
+      "targets": [
+        ["id=passwordInput", "id"],
+        ["css=#passwordInput", "css:finder"],
+        ["xpath=//input[@id='passwordInput']", "xpath:attributes"],
+        ["xpath=//form[@id='loginForm']/div[3]/input", "xpath:idRelative"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": "123"
+    }, {
+      "id": "43d48ea6-6870-4e04-9a59-282d349e1231",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//form[@id='loginForm']/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Log in')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "8029c0ed-f02e-4217-94a3-dac2619ba554",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Controlo Temperatura",
+      "targets": [
+        ["linkText=Controlo Temperatura", "linkText"],
+        ["css=a:nth-child(5)", "css:finder"],
+        ["xpath=//a[contains(text(),'Controlo Temperatura')]", "xpath:link"],
+        ["xpath=//a[contains(@href, './temp_control.html?area=whole_house')]", "xpath:href"],
+        ["xpath=//a[4]", "xpath:position"],
+        ["xpath=//a[contains(.,'Controlo Temperatura')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "89ce0365-66d0-49e3-8f1e-70d3919e117f",
+      "comment": "",
+      "command": "click",
+      "target": "css=.control:nth-child(3) .programTime",
+      "targets": [
+        ["css=.control:nth-child(3) .programTime", "css:finder"],
+        ["xpath=(//input[@type='time'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='controlPanel']/div[3]/div/input", "xpath:idRelative"],
+        ["xpath=//div[3]/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "541363a2-6766-4df3-b8b2-90348cdb01a9",
+      "comment": "",
+      "command": "type",
+      "target": "css=.control:nth-child(3) .programTime",
+      "targets": [
+        ["css=.control:nth-child(3) .programTime", "css:finder"],
+        ["xpath=(//input[@type='time'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='controlPanel']/div[3]/div/input", "xpath:idRelative"],
+        ["xpath=//div[3]/div/input", "xpath:position"]
+      ],
+      "value": "20:30"
+    }, {
+      "id": "7128861b-029f-4000-8a54-1d288eb6dc26",
+      "comment": "",
+      "command": "click",
+      "target": "css=.control:nth-child(3) .programTemp",
+      "targets": [
+        ["css=.control:nth-child(3) .programTemp", "css:finder"],
+        ["xpath=(//input[@value='22'])[4]", "xpath:attributes"],
+        ["xpath=//div[@id='controlPanel']/div[3]/div/input[2]", "xpath:idRelative"],
+        ["xpath=//div[3]/div/input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0e8b5844-2110-43ae-aaaa-baa1fc9d1dfb",
+      "comment": "",
+      "command": "type",
+      "target": "css=.control:nth-child(3) .programTemp",
+      "targets": [
+        ["css=.control:nth-child(3) .programTemp", "css:finder"],
+        ["xpath=(//input[@value='22'])[4]", "xpath:attributes"],
+        ["xpath=//div[@id='controlPanel']/div[3]/div/input[2]", "xpath:idRelative"],
+        ["xpath=//div[3]/div/input[2]", "xpath:position"]
+      ],
+      "value": "16"
+    }, {
+      "id": "1cc8da15-76ec-4467-88d2-361c4268c586",
+      "comment": "",
+      "command": "click",
+      "target": "css=.control:nth-child(3) button",
+      "targets": [
+        ["css=.control:nth-child(3) button", "css:finder"],
+        ["xpath=(//button[@onclick='programTemperature(this)'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='controlPanel']/div[3]/div/button", "xpath:idRelative"],
+        ["xpath=//div[3]/div/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c68b226a-838b-4a8e-81c8-3726ddf5af24",
+      "comment": "",
+      "command": "assertAlert",
+      "target": "Termostato Geral programado para 16°C às 20:30.",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "168c2e8f-5a45-412d-b1d5-f401ddec7977",
+    "name": "Reportar Problema",
+    "commands": [{
+      "id": "afa27aca-c68a-4a86-9571-a931e88fc357",
+      "comment": "",
+      "command": "open",
+      "target": "https://rrfgamer.github.io/building-it/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "992c0796-3654-4456-81d8-a4964edf9931",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "974x1032",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "60c6accc-04e2-460e-83eb-a16941f37ce4",
+      "comment": "",
+      "command": "click",
+      "target": "id=usernameInput",
+      "targets": [
+        ["id=usernameInput", "id"],
+        ["css=#usernameInput", "css:finder"],
+        ["xpath=//input[@id='usernameInput']", "xpath:attributes"],
+        ["xpath=//form[@id='loginForm']/div[2]/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "54bce999-9a4f-422b-a0f0-bb4b95256a61",
+      "comment": "",
+      "command": "type",
+      "target": "id=usernameInput",
+      "targets": [
+        ["id=usernameInput", "id"],
+        ["css=#usernameInput", "css:finder"],
+        ["xpath=//input[@id='usernameInput']", "xpath:attributes"],
+        ["xpath=//form[@id='loginForm']/div[2]/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "marta"
+    }, {
+      "id": "5e51b22e-fbda-4d6d-9391-2c8f9f0256b3",
+      "comment": "",
+      "command": "click",
+      "target": "id=passwordInput",
+      "targets": [
+        ["id=passwordInput", "id"],
+        ["css=#passwordInput", "css:finder"],
+        ["xpath=//input[@id='passwordInput']", "xpath:attributes"],
+        ["xpath=//form[@id='loginForm']/div[3]/input", "xpath:idRelative"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "50e9decc-9fcd-4e32-9886-7566131dd8b6",
+      "comment": "",
+      "command": "type",
+      "target": "id=passwordInput",
+      "targets": [
+        ["id=passwordInput", "id"],
+        ["css=#passwordInput", "css:finder"],
+        ["xpath=//input[@id='passwordInput']", "xpath:attributes"],
+        ["xpath=//form[@id='loginForm']/div[3]/input", "xpath:idRelative"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": "123"
+    }, {
+      "id": "98ee18d4-3336-4ae5-a1f2-476a6731e0f0",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//form[@id='loginForm']/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Log in')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "17999efc-0415-4429-8e7b-59a56feba6ba",
+      "comment": "",
+      "command": "click",
+      "target": "id=area",
+      "targets": [
+        ["id=area", "id"],
+        ["name=area", "name"],
+        ["css=#area", "css:finder"],
+        ["xpath=//select[@id='area']", "xpath:attributes"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8aaa8476-36e0-475a-be2b-08ea1a8c3661",
+      "comment": "",
+      "command": "select",
+      "target": "id=area",
+      "targets": [],
+      "value": "label=Garagem"
+    }, {
+      "id": "e9bb8338-fb54-46f9-880c-629118822415",
+      "comment": "",
+      "command": "click",
+      "target": "id=natureza",
+      "targets": [
+        ["id=natureza", "id"],
+        ["name=natureza", "name"],
+        ["css=#natureza", "css:finder"],
+        ["xpath=//select[@id='natureza']", "xpath:attributes"],
+        ["xpath=//select[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f3c7fd79-0f0a-41ea-bf0a-e1d7661e16c3",
+      "comment": "",
+      "command": "select",
+      "target": "id=natureza",
+      "targets": [],
+      "value": "label=Iluminação"
+    }, {
+      "id": "4586cba0-162d-4963-ba3e-883bc33d8eb5",
+      "comment": "",
+      "command": "click",
+      "target": "id=descricao",
+      "targets": [
+        ["id=descricao", "id"],
+        ["name=descricao", "name"],
+        ["css=#descricao", "css:finder"],
+        ["xpath=//textarea[@id='descricao']", "xpath:attributes"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "efb62faf-01a8-43e3-a1ab-e274a31b509a",
+      "comment": "",
+      "command": "type",
+      "target": "id=descricao",
+      "targets": [
+        ["id=descricao", "id"],
+        ["name=descricao", "name"],
+        ["css=#descricao", "css:finder"],
+        ["xpath=//textarea[@id='descricao']", "xpath:attributes"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": "Há uma lâmpada da garagem que está a piscar, parece estar com defeito"
+    }, {
+      "id": "3adadd2f-0b94-49fe-8ef5-ebbe9dd5be5d",
+      "comment": "",
+      "command": "click",
+      "target": "css=button",
+      "targets": [
+        ["css=button", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Enviar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "3c4bc8c4-e5b7-4a0b-b2a6-1e61c1620c74",
+      "comment": "",
+      "command": "assertAlert",
+      "target": "Relatório enviado com sucesso!",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "aee0fab2-891a-44b1-ace8-d4a0045f8f18",
+    "name": "Resolver Problema",
+    "commands": [{
+      "id": "d919e9e0-4a60-494e-940b-361a12131ba1",
+      "comment": "",
+      "command": "open",
+      "target": "https://rrfgamer.github.io/building-it/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "9f5ae87e-78b8-4b4f-881a-50b1ded38ce1",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "974x1032",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "987288b5-f847-4dc1-97e3-7fe2cc4e0d6f",
+      "comment": "",
+      "command": "click",
+      "target": "id=usernameInput",
+      "targets": [
+        ["id=usernameInput", "id"],
+        ["css=#usernameInput", "css:finder"],
+        ["xpath=//input[@id='usernameInput']", "xpath:attributes"],
+        ["xpath=//form[@id='loginForm']/div[2]/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "06b0d5fd-7e3c-4d5b-8e7f-281a4a92971a",
+      "comment": "",
+      "command": "type",
+      "target": "id=usernameInput",
+      "targets": [
+        ["id=usernameInput", "id"],
+        ["css=#usernameInput", "css:finder"],
+        ["xpath=//input[@id='usernameInput']", "xpath:attributes"],
+        ["xpath=//form[@id='loginForm']/div[2]/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "luis.freitas"
+    }, {
+      "id": "3054bd06-a261-493d-8b96-a27539e80fc2",
+      "comment": "",
+      "command": "click",
+      "target": "id=passwordInput",
+      "targets": [
+        ["id=passwordInput", "id"],
+        ["css=#passwordInput", "css:finder"],
+        ["xpath=//input[@id='passwordInput']", "xpath:attributes"],
+        ["xpath=//form[@id='loginForm']/div[3]/input", "xpath:idRelative"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8717d6cc-c95e-4f62-ba34-c067c5d82808",
+      "comment": "",
+      "command": "type",
+      "target": "id=passwordInput",
+      "targets": [
+        ["id=passwordInput", "id"],
+        ["css=#passwordInput", "css:finder"],
+        ["xpath=//input[@id='passwordInput']", "xpath:attributes"],
+        ["xpath=//form[@id='loginForm']/div[3]/input", "xpath:idRelative"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": "123"
+    }, {
+      "id": "317e0497-ccbb-4e1e-9bd9-c98884ff3552",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//form[@id='loginForm']/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Log in')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "ca889b25-c5e9-4216-8c4f-9fc36a7c1fdc",
+      "comment": "",
+      "command": "click",
+      "target": "css=.issue:nth-child(1) > .resolve-button",
+      "targets": [
+        ["css=.issue:nth-child(1) > .resolve-button", "css:finder"],
+        ["xpath=//div[@id='problemas-por-resolver']/div/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Resolvido')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "cce15fb0-808f-41c8-92ed-458fb3d7a10b",
+      "comment": "",
+      "command": "click",
+      "target": "id=resolvidos-tab",
+      "targets": [
+        ["id=resolvidos-tab", "id"],
+        ["linkText=Problemas resolvidos", "linkText"],
+        ["css=#resolvidos-tab", "css:finder"],
+        ["xpath=//a[contains(text(),'Problemas resolvidos')]", "xpath:link"],
+        ["xpath=//a[@id='resolvidos-tab']", "xpath:attributes"],
+        ["xpath=(//a[contains(@href, '#')])[2]", "xpath:href"],
+        ["xpath=//a[2]", "xpath:position"],
+        ["xpath=//a[contains(.,'Problemas resolvidos')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "42135ce9-f195-41e3-b1aa-6bc008af8695",
+      "comment": "",
+      "command": "click",
+      "target": "css=.reported-by:nth-child(6)",
+      "targets": [
+        ["css=.reported-by:nth-child(6)", "css:finder"],
+        ["xpath=//div[@id='problemas-resolvidos']/div[4]/div[5]", "xpath:idRelative"],
+        ["xpath=//div[4]/div[5]", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "4d9cc94b-8269-42ef-b55c-1611248dedac",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["15b88dc8-c6a0-4b26-bbea-c442109ccd01"]
+  }],
+  "urls": ["https://rrfgamer.github.io/", "https://rrfgamer.github.io/building-it/"],
+  "plugins": []
+}
